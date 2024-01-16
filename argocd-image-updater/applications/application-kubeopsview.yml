@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kube-ops-view-demo
+  name: kube-ops-view-demo-11111
   finalizers:
   - resources-finalizer.argocd.argoproj.io
   namespace: argocd
@@ -14,7 +14,7 @@ spec:
     namespace: kube-ops-view
   project: default
   source:
-    repoURL: 'https://github.com/ningwei-plusnet/argocd--of--tanmay-bhat.git'
+    repoURL: 'https://github.com/ningwei-plusnet/argocd--of--tanmay-bhat-11111.git'
     path: argocd-image-updater/charts/kube-ops-view
     targetRevision: HEAD
     helm:
