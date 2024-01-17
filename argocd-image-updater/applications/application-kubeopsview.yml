@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-ops-view-demo
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: ghcr.io/ningwei-plusnet/simple-app:latest
+    argocd-image-updater.argoproj.io/update-strategy: digest
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-ops-view
+  project: default
+  source:
+    repoURL: 'https://github.com/ningwei-plusnet/argocd--of--tanmay-bhat.git'
+    path: argocd-image-updater/charts/kube-ops-view
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml 
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true      
+ 
